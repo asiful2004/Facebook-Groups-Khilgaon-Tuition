@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Facebook Groups Khilgaon Tuition</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+
+body{
+background:linear-gradient(135deg,#eef2ff,#f8fafc);
+padding:20px
+}
+
+.header{text-align:center;margin-bottom:30px}
+.header h1{font-size:28px;font-weight:600}
+.header p{color:#666;font-size:14px;margin-top:5px}
+
+.container{
+max-width:1200px;
+margin:auto;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:20px;
+}
+
+.card{
+background:#fff;
+border-radius:18px;
+padding:20px;
+box-shadow:0 10px 30px rgba(0,0,0,0.08);
+transition:0.3s;
+position:relative;
+overflow:hidden;
+}
+
+.card::before{
+content:"";
+position:absolute;
+top:0;left:0;width:100%;height:5px;
+background:linear-gradient(90deg,#1877f2,#42a5f5);
+}
+
+.card:hover{
+transform:translateY(-6px);
+box-shadow:0 20px 40px rgba(0,0,0,0.12);
+}
+
+.top-row{
+ display:flex;
+ align-items:center;
+ gap:10px;
+ margin-bottom:10px;
+}
+
+.logo{
+ width:40px;
+ height:40px;
+ border-radius:50%;
+ overflow:hidden;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ background:#1877f2;
+ color:#fff;
+ font-weight:600;
+ font-size:14px;
+}
+
+.logo img{
+ width:100%;
+ height:100%;
+ object-fit:cover;
+}
+
+.serial{
+ font-size:14px;
+ color:#999;
+}
+
+.group-name{
+font-size:16px;
+font-weight:600;
+margin-bottom:5px
+}
+
+.members{
+font-size:13px;
+color:#777;
+margin-bottom:15px
+}
+
+.join-btn{
+display:block;
+text-align:center;
+text-decoration:none;
+background:linear-gradient(90deg,#1877f2,#42a5f5);
+color:#fff;
+padding:10px;
+border-radius:10px;
+font-size:14px;
+transition:0.3s;
+}
+
+.join-btn:hover{opacity:0.9}
+
+.footer{
+text-align:center;
+margin-top:40px;
+color:#888;
+font-size:13px
+}
+
+.footer a{
+color:#1877f2;
+text-decoration:none;
+font-weight:500
+}
+
+@media(max-width:500px){
+.header h1{font-size:22px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+<h1>🔥 Facebook Groups Directory</h1>
+<p>Join top communities & grow your network</p>
+</div>
+
+<div class="container" id="groupContainer"></div>
+
+<div class="footer">
+© <span id="year"></span> Your Brand | Developed by 
+<a href="https://arodx.com" target="_blank">arodx.com</a>
+</div>
+
+<script>
+const groups = [
+{name:"Khilgaon Tuition Media",members:"39.8K members",link:"https://www.facebook.com/groups/202455737468825/"},
+{name:"Khilgoan Tuition 💥💥",members:"4.5K members",link:"https://www.facebook.com/groups/384257033737713/"},
+{name:"Khilgaon, Basabo and Banasree Tuition media",members:"10.9K members",link:"https://www.facebook.com/groups/1315661665705587/"},
+{name:"Khilgaon Tuition Media / খিলগাঁও টিউশন মিডিয়া, ঢাকা💥",members:"12.4K members",link:"https://www.facebook.com/groups/275206091404259/"},
+{name:"Khilgaon Tuition Media",members:"1.6K members",link:"https://www.facebook.com/groups/944695676710223/"},
+{name:"Khilgaon Tuition/Tutors Club - খিলগাঁও টিউশন/টিউটর ক্লাব 💥",members:"2.4K members",link:"https://www.facebook.com/groups/439277839188345/"},
+{name:"KHILGAON-MALIBAGH TUITION- খিলগাঁও/মালিবাগ টিউশন💥",members:"1.4K members",link:"https://www.facebook.com/groups/7913297485460658/"},
+{name:"Khilgaon Tuition Point - খিলগাঁও টিউশন পয়েন্ট",members:"212 members",link:"https://www.facebook.com/groups/4123184114571094/"},
+{name:"Rampura, banasree, badda, Khilgaon Tuition",members:"40K members",link:"https://www.facebook.com/groups/426379422656196/"},
+{name:"Khilgaw Tuition Media - খিলগাঁও টিউশন",members:"35K members",link:"https://www.facebook.com/groups/433015139060685/"},
+{name:"Khilgaon Tutors And Tuition",members:"130K members",link:"https://www.facebook.com/groups/1302035750815750/"},
+{name:"📗Basabo-Khilgaon-Nandipara-Meradia Tuition= বাসাবো টিউশন🔥",members:"75K members",link:"https://www.facebook.com/groups/798181719248098/"},
+{name:"Malibagh, Khilgaon, Banasree Tuition Media",members:"90K members",link:"https://www.facebook.com/groups/745661418189327/"},
+{name:"Mugda, Basabo,Khilgaon Tuition",members:"25K members",link:"https://www.facebook.com/groups/2106716896433586/"},
+{name:"TUITION~[Khilgaon-Basabo-Banasree]🔥",members:"50K members",link:"https://www.facebook.com/groups/712756034553267/"},
+{name:"Tuition Hub: Khilgaon, Malibagh, Basabo, Mogda, Goran, Shantinagar…",members:"45K members",link:"https://www.facebook.com/groups/1038740611275815/"},
+{name:"SHAHJAHANPUR,KHILGAON,BASABO,GURAN-[PROYOJON TUTOR& TUITION]",members:"140K members",link:"https://www.facebook.com/groups/350209200658446/"},
+{name:"KHILGAON TUITION HUB~খিলগাঁও টিউশন হাব💥",members:"65K members",link:"https://www.facebook.com/groups/3761681217440425/"},
+{name:"✅Tuition Wanted-Dhaka(Khilgaon,Rampura,Banasree,,Mirpur,uttara,Jatrabari)",members:"80K members",link:"https://www.facebook.com/groups/1576152666838974/"},
+{name:"Tuition Wanted (Mugda, Manda, Bashabo, Khilgaon)",members:"100K members",link:"https://www.facebook.com/groups/261016128142070/"}
+];
+
+const container = document.getElementById('groupContainer');
+
+groups.forEach((group,index)=>{
+
+const card = document.createElement('div');
+card.className='card';
+
+const logoContent = group.logo
+  ? `<img src="${group.logo}" alt="logo">`
+  : `<span>${index+1}</span>`;
+
+card.innerHTML=`
+<div class="top-row">
+  <div class="logo">${logoContent}</div>
+  <div class="serial">#${index+1}</div>
+</div>
+<div class="group-name">${group.name}</div>
+<div class="members">${group.members}</div>
+<a href="${group.link}" target="_blank" rel="noopener noreferrer" class="join-btn">Join Group</a>
+`;
+
+container.appendChild(card);
+});
+
+// Auto year
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
